@@ -1,0 +1,30 @@
+services:
+  influxdb:
+    image: 'influxdb:1.8'
+    container_name: 'influxdb'
+    ports:
+      - '8086:8086'
+      #- '2003:2003'
+    environment:
+      - INFLUXDB_DB=gatling_graphite   # Nom de la base de données initiale
+      - INFLUXDB_USER=gatling_user     # Nom d'utilisateur initial
+      - INFLUXDB_USER_PASSWORD=gatling_password  # Mot de passe de l'utilisateur
+      - INFLUXDB_ADMIN_USER=admin  # Utilisateur administrateur
+      - INFLUXDB_ADMIN_PASSWORD=adminpassword
+    volumes:
+      - 'influxdb-data:/var/lib/influxdb'
+
+  prometheus:
+    image: 'prom/prometheus'
+    container_name: 'prometheus'
+    ports:
+      - '9090:9090'
+    volumes:
+      - 'prometheus-data:/var/lib/prometheus'
+      - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
+
+volumes:
+  influxdb-data:
+    #influxdb-storage:
+  prometheus-data:
+

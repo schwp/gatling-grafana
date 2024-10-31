@@ -1,0 +1,12 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 30s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+  # Assumes Gatling is running on localhost.
+      - targets: ['localhost:9090']
+  #metrics_path: /metrics
+  #scheme: http
+

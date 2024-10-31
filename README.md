@@ -1,2 +1,1 @@
-# gatling-grafana
-Gatling reports visualization using Grafana
+# Gatling and Grafana integration
