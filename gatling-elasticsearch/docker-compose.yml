@@ -1,0 +1,15 @@
+services:
+  elasticsearch:
+    image: 'elasticsearch:8.15.3'
+    container_name: 'elasticsearch'
+    ports:
+      - '9200:9200' # Client communication port (sending REST requests)
+      - '9300:9300' # Node to node communication port
+    environment:
+      - discovery.type=single-node # Single node mode activated: meaning only one node will do all research
+      - xpack.security.enabled=false # Security disabled: HTTPS disabled to test it on your localhost
+    volumes:
+      - 'elasticsearch-data:/usr/share/elasticsearch/data'
+
+volumes:
+  elasticsearch-data:
